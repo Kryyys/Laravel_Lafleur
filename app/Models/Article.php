@@ -58,4 +58,14 @@ class Article extends Model
     {
         return $this->belongsTo(Couleur::class, 'couleur_secondaire_id');
     }
+
+    /**
+     * Un article peut appartenir à plusieurs évènements 
+     *
+     * @return void
+     */
+    public function evenement()
+    {
+        return $this->belongsToMany(Evenement::class);
+    }
 }
