@@ -9,6 +9,11 @@ class Evenement extends Model
 {
     use HasFactory;
 
+    protected $table = "lf_evenements";
+    protected $primaryKey = "id";
+    protected $fillable = array('nom_evenement');
+    public $timestamps = false;
+
     /**
      * Un évenement peut avoir plusieurs articles
      *

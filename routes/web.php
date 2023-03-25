@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CouleurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +31,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('lf_articles', ArticleController::class);
+Route::resource('lf_couleurs', CouleurController::class);
 
 require __DIR__ . '/auth.php';
