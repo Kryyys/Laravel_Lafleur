@@ -13,7 +13,7 @@ class CouleurController extends Controller
     public function index()
     {
         $couleurs = Couleur::all();
-        return view('couleurs.index', ['couleurs'=>$couleurs]);
+        return view('couleurs.index', ['couleurs' => $couleurs]);
     }
 
     /**
@@ -21,6 +21,7 @@ class CouleurController extends Controller
      */
     public function create()
     {
+        $couleurs = new Couleur;
         return view('couleurs.create');
     }
 
@@ -29,16 +30,16 @@ class CouleurController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'couleur'=>'required'
-        ]);
+        // $request->validate([
+        //     'couleur'=>'required|string|max:45'
+        // ]);
 
-        $couleur= new Couleur([
-            'couleur'=> $request->get('couleur')
-        ]);
+        // $couleur= new Couleur([
+        //     'couleur'=> $request->get('couleur')
+        // ]);
 
-        $couleur->save();
-        return redirect('/')->with('Succès', 'Couleur ajoutée avec succès');
+        // $couleur->save();
+        // return redirect('/')->with('Succès', 'Couleur ajoutée avec succès');
     }
 
     /**
@@ -46,8 +47,8 @@ class CouleurController extends Controller
      */
     public function show(string $id)
     {
-        $couleurs = Couleur::findOrFail($id);
-        return view('couleurs.show', compact('couleur'));
+        // $couleurs = Couleur::findOrFail($id);
+        // return view('couleurs.show', compact('couleur'));
     }
 
     /**
@@ -55,8 +56,8 @@ class CouleurController extends Controller
      */
     public function edit(string $id)
     {
-        $couleurs = Couleur::findOrFail($id);
-        return view('couleurs.edit', compact('couleur'));
+        // $couleurs = Couleur::findOrFail($id);
+        // return view('couleurs.edit', compact('couleur'));
     }
 
     /**
@@ -64,16 +65,16 @@ class CouleurController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'couleur'=>'required'
-        ]);
+        //     $request->validate([
+        //         'couleur'=>'required'
+        //     ]);
 
-        $couleurs = Couleur::findOrFail($id);
-        $couleurs->couleur=$request->get('couleur');
+        //     $couleurs = Couleur::findOrFail($id);
+        //     $couleurs->couleur=$request->get('couleur');
 
-        $couleurs->uptdate();
+        //     $couleurs->uptdate();
 
-        return redirect('/')->with('Succès', 'Couleur modifiée avec succès');
+        //     return redirect('/')->with('Succès', 'Couleur modifiée avec succès');
     }
 
     /**
@@ -81,9 +82,9 @@ class CouleurController extends Controller
      */
     public function destroy(string $id)
     {
-        $couleurs = Couleur::findOrFail($id);
-        $couleurs->delete();
+        // $couleurs = Couleur::findOrFail($id);
+        // $couleurs->delete();
 
-        return redirect('/')->with('Succès', 'Couleur supprimée avec succès');
+        // return redirect('/')->with('Succès', 'Couleur supprimée avec succès');
     }
 }
