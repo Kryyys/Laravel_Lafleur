@@ -22,7 +22,7 @@ class CouleurController extends Controller
     public function create()
     {
         $couleurs = new Couleur;
-        return view('couleurs.create');
+        return view('couleurs.create', ['couleur' => $couleurs]);
     }
 
     /**
@@ -30,16 +30,22 @@ class CouleurController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'couleur'=>'required|string|max:45'
-        // ]);
-
-        // $couleur= new Couleur([
-        //     'couleur'=> $request->get('couleur')
-        // ]);
-
-        // $couleur->save();
-        // return redirect('/')->with('Succès', 'Couleur ajoutée avec succès');
+        if ($request->validate([
+            'couleur' => ['required', 'max:45', 'regex:/^[A-Za-z]+$/']
+        ], [
+            'couleur.required' => 'Le champ couleur est requis',
+            'couleur.max:45' => 'Le champ couleur ne doit pas contenir plus de 45 caractères',
+            'couleur.regex' => 'Le champ ne doit contenir que des lettres'
+        ])) {
+            $couleur = $request->input('couleur');
+            $couleurs = new Couleur();
+            $couleurs->couleur = $couleur;
+            $couleurs->save();
+            return redirect()->route('couleurs.index')->with('success', 'Couleur créée avec succès !');
+        } else {
+            // cela sert à revenir sur la page avec l'input
+            return redirect()->back();
+        }
     }
 
     /**
@@ -47,8 +53,7 @@ class CouleurController extends Controller
      */
     public function show(string $id)
     {
-        // $couleurs = Couleur::findOrFail($id);
-        // return view('couleurs.show', compact('couleur'));
+        // 
     }
 
     /**
@@ -56,35 +61,41 @@ class CouleurController extends Controller
      */
     public function edit(string $id)
     {
-        // $couleurs = Couleur::findOrFail($id);
-        // return view('couleurs.edit', compact('couleur'));
+        $couleurs = Couleur::findOrFail($id);
+        return view('couleurs.edit', ['couleur' => $couleurs]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $id)
     {
-        //     $request->validate([
-        //         'couleur'=>'required'
-        //     ]);
+        if ($request->validate([
+            'couleur' => ['required', 'max:45', 'regex:/^[A-Za-z]+$/']
+        ], [
+            'couleur.required' => 'Le champ couleur est requis',
+            'couleur.max:45' => 'Le champ couleur ne doit pas contenir plus de 45 caractères',
+            'couleur.regex' => 'Le champ ne doit contenir que des lettres'
+        ])) {
+            $couleur = $request->input('couleur');
+            $couleurs = Couleur::find($id);
+            $couleurs->couleur = $couleur;
+            $couleurs->save();
+            return redirect()->route('couleurs.index')->with('success', 'Couleur modifiée avec succès !');
+        } else {
+            // cela sert à revenir sur la page avec l'input
+            return redirect()->back();
+        }
 
-        //     $couleurs = Couleur::findOrFail($id);
-        //     $couleurs->couleur=$request->get('couleur');
-
-        //     $couleurs->uptdate();
-
-        //     return redirect('/')->with('Succès', 'Couleur modifiée avec succès');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
-        // $couleurs = Couleur::findOrFail($id);
-        // $couleurs->delete();
+        Couleur::destroy($id);
 
-        // return redirect('/')->with('Succès', 'Couleur supprimée avec succès');
+        return redirect()->route('couleurs.index')->with('success', 'Couleur supprimée avec succès !');
     }
 }

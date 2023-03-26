@@ -1,4 +1,11 @@
 {
+    "Color": "Couleurs",
+    "No saved color": "Pas de couleurs enregistrées",
+    "Back" : "Retour",
+    "Create a color": "Créer une nouvelle couleur",
+    "Name of the new color": "Nom de la nouvelle couleur",
+    "New name of the color": "Nouveau nom de la couleur",
+    "Edit the Color" : "Modifier la couleur",
     "List of all Colors": "Liste de toutes les couleurs",
     "(and :count more error)": "(et :count erreur en plus)",
     "(and :count more errors)": "(et :count erreurs en plus)",

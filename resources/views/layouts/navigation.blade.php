@@ -16,12 +16,12 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-            </div>
 
-            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-nav-link :href="route('couleurs.index')" :active="request()->routeIs('couleurs')">
-                    {{ __('Couleur') }}
-                </x-nav-link>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('couleurs.index')" :active="request()->routeIs('couleurs')">
+                        {{ __('Couleurs') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
