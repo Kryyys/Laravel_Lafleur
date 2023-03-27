@@ -20,9 +20,11 @@
 
 
                     <div class="flex items-center justify-center">
-                        <div class="creer w-16 cursor-pointer rounded-xl text-white border-2 border-white transition duration-500 ease-in-out bg-transparent hover:bg-blue-800 hover:text-white p-3">
-                            <a href="{{route('couleurs.create')}}">Créer</a>
-                        </div>
+                        <a href="{{route('couleurs.create')}}">
+                            <div class="creer w-auto cursor-pointer rounded-xl text-white border-2 border-white transition duration-500 ease-in-out bg-transparent hover:bg-blue-800 hover:text-white p-3">
+                            {{__("Create")}}
+                            </div>
+                        </a>
                     </div>
 
 
@@ -45,10 +47,10 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-left text-s font-medium text-gray-500 tracking-wider">{{$couleur->id}}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-left text-s font-medium text-gray-500 tracking-wider">{{$couleur->couleur}}</td>
                                         <td class="flex pt-4">
-                                            <x-modifier :couleur="$couleur"></x-modifier>
-                                            <x-supprimer :action="route('couleurs.destroy', $couleur->id)">
+                                            <x-update :couleur="$couleur"></x-update>
+                                            <x-delete :action="route('couleurs.destroy', $couleur->id)">
                                                 <i class="fa-solid fa-trash text-gray-900 transition duration-100 ease-in-out bg-transparent hover:scale-150"></i>
-                                            </x-supprimer>
+                                            </x-delete>
                                         </td>
                                     </tr>
                                     @endforeach

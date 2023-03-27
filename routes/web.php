@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CouleurController;
+use App\Http\Controllers\EvenementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +34,6 @@ Route::middleware('auth')->group(function () {
 Route::resource('articles', ArticleController::class);
 
 Route::resource('couleurs', CouleurController::class);
+Route::resource('evenements', EvenementController::class);
 
 require __DIR__ . '/auth.php';

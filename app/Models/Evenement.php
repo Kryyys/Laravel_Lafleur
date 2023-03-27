@@ -11,7 +11,7 @@ class Evenement extends Model
 
     protected $table = "lf_evenements";
     protected $primaryKey = "id";
-    protected $fillable = array('nom_evenement');
+    protected $fillable = array('nom_evenement, affiche');
     public $timestamps = false;
 
     /**
