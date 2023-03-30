@@ -19,8 +19,14 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('couleurs.index')" :active="request()->routeIs('couleurs')">
-                        {{ __('Couleurs') }}
+                        {{ __('Color') }}
                     </x-nav-link>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('evenements.index')" :active="request()->routeIs('evenements')">
+                        {{ __('Events') }}
+                    </x-nav-link>
+                </div>
                 </div>
             </div>
 

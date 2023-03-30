@@ -13,7 +13,7 @@
                     <h1 class="text-center text-3xl font-bold underline pb-10">{{__("List of all Colors")}}</h1>
 
                     @if(session('success'))
-                    <div class="alert alert-success text-red-500">
+                    <div class="alert alert-success text-green-500">
                         {{ session('success') }}
                     </div>
                     @endif

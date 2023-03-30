@@ -22,7 +22,7 @@ class EvenementController extends Controller
     public function create()
     {
         $evenements = new Evenement;
-        return view('evenements.create', ['evenement' => $evenements]);
+        return view('evenements.create', ['evenements' => $evenements]);
     }
 
     /**
@@ -30,6 +30,7 @@ class EvenementController extends Controller
      */
     public function store(Request $request)
     {
+
         if ($request->validate([
             'nom_evenement' => ['required', 'max:45', 'regex:/^[A-Za-z]+$/'],
             'affiche' => ['required']

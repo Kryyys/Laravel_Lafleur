@@ -1,4 +1,13 @@
 {
+    "Display the event in the sub-menu ?": "Afficher l'évènement dans le sous-menu ?",
+    "Name of the new event": "Nom du nouvel évènement",
+    "Create an event": "Créer un nouvel évènement",
+    "New name of the event": "Modifier le nom de l'évènement",
+    "Edit the Event": "Modifier l'évènement",
+    "No saved events": "Pas d'évènements enregistrés",
+    "Displayed": "Affiché",
+    "List of all Events": "Liste de tous les évènements",
+    "Events": "Évènements",
     "Create" : "Créer",
     "Color": "Couleurs",
     "No saved color": "Pas de couleurs enregistrées",
