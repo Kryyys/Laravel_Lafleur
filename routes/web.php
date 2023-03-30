@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CouleurController;
 use App\Http\Controllers\EvenementController;
+use App\Http\Controllers\SousCategorieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +36,6 @@ Route::resource('articles', ArticleController::class);
 
 Route::resource('couleurs', CouleurController::class);
 Route::resource('evenements', EvenementController::class);
+Route::resource('sousCategories', SousCategorieController::class);
 
 require __DIR__ . '/auth.php';

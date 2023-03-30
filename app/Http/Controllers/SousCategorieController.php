@@ -13,7 +13,7 @@ class SousCategorieController extends Controller
     public function index()
     {
         $sousCategories = SousCategorie::all();
-        return view('sousCategories.index', ['sous_categorie' => $sousCategories]);
+        return view('sousCategories.index', ['sousCategories' => $sousCategories]);
     }
 
     /**
@@ -22,7 +22,7 @@ class SousCategorieController extends Controller
     public function create()
     {
         $sousCategories = new SousCategorie();
-        return view('sousCategories.create', ['sous_categorie' => $sousCategories]);
+        return view('sousCategories.create', ['sousCategories' => $sousCategories]);
     }
 
     /**
