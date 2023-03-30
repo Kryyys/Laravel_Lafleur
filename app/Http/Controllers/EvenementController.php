@@ -56,7 +56,7 @@ class EvenementController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
         //
     }
@@ -64,7 +64,7 @@ class EvenementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
         $evenements = Evenement::findOrFail($id);
         return view('evenements.edit', ['evenement' => $evenements]);
@@ -73,7 +73,7 @@ class EvenementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $id)
     {
         if ($request->validate([
             'nom_evenement' => ['required', 'max:45', 'regex:/^[A-Za-z]+$/'],
@@ -100,9 +100,9 @@ class EvenementController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
-            Evenement::destroy($id);
+        Evenement::destroy($id);
 
         return redirect()->route('evenements.index')->with('success', "L'évènement a été supprimé avec succès !");
     }

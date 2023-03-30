@@ -11,7 +11,7 @@ class Categorie extends Model
 
     protected $table = "lf_categories_articles";
     protected $primaryKey = "id";
-    protected $fillable = array('nom_categorie');
+    protected $fillable = array('nom_categorie', 'affiche');
     public $timestamps = false;
 
     /**
