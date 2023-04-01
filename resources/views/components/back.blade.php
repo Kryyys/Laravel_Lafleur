@@ -3,7 +3,7 @@
 @props(['sousCategorie'])
 @props(['categorie'])
 @props(['unite'])
-
+@props(['espece'])
 
 @if (isset($couleur))
 <a href="{{route('couleurs.index', $couleur->id)}}">
@@ -31,6 +31,12 @@
 
 @if (isset($unite))
 <a href="{{route('unites.index', $unite->id)}}">
+    <div class="retour w-18 m-10 cursor-pointer pt-4 hover:underline">{{$slot}}</div>
+</a>
+@endif
+
+@if (isset($espece))
+<a href="{{route('especes.index', $espece->id)}}">
     <div class="retour w-18 m-10 cursor-pointer pt-4 hover:underline">{{$slot}}</div>
 </a>
 @endif

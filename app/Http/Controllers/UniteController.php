@@ -35,7 +35,7 @@ class UniteController extends Controller
         ], [
             'unite.required' => 'Le champ unite est requis',
             'unite.max:45' => 'Le champ unite ne doit pas contenir plus de 45 caractères',
-            'unite.regex' => 'Le champ ne doit contenir que des lettres'
+            'unite.regex' => 'Le champ ne doit contenir que des lettres et des chiffres'
         ])) {
             $unite = $request->input('unite');
             $unites = new Unite();
@@ -75,7 +75,7 @@ class UniteController extends Controller
         ], [
             'unite.required' => 'Le champ unite est requis',
             'unite.max:45' => 'Le champ unite ne doit pas contenir plus de 45 caractères',
-            'unite.regex' => 'Le champ ne doit contenir que des lettres'
+            'unite.regex' => 'Le champ ne doit contenir que des lettres et des chiffres'
         ])) {
             $unite = $request->input('unite');
             $unites = Unite::find($id);

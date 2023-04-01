@@ -8,6 +8,7 @@ use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\SousCategorieController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\UniteController;
+use App\Http\Controllers\EspeceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,5 +42,6 @@ Route::resource('evenements', EvenementController::class);
 Route::resource('sousCategories', SousCategorieController::class);
 Route::resource('categories', CategorieController::class);
 Route::resource('unites', UniteController::class);
+Route::resource('especes', EspeceController::class);
 
 require __DIR__ . '/auth.php';
