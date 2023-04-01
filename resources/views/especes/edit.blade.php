@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Units') }}
+            {{ __('Species') }}
         </h2>
     </x-slot>
 
@@ -10,16 +10,16 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
-                    <h2 class="m-10 text-2xl font-bold underline">{{__("Edit the unit")}}</h2>
+                    <h2 class="m-10 text-2xl font-bold underline">{{__("Edit the species")}}</h2>
 
-                    <form action="{{route('unites.update', $unite->id)}}" method="POST">
+                    <form action="{{route('especes.update', $espece->id)}}" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="ml-10">
-                            <label for="unite"> {{__("New name of the unit")}} :
+                            <label for="espece"> {{__("New name of the species")}} :
                                 <br><br>
-                                <input type="text" name="unite" class="text-gray-900">
-                                @error('unite')
+                                <input type="text" name="espece" class="text-gray-900">
+                                @error('espece')
                                 <div class="text-red-500">{{$message}}</div>
                                 @enderror
                         </div>
@@ -28,7 +28,7 @@
                         <br>
                         <div class="flex">
                             <input type="submit" value="Modifier" name="modifier" class="modifier m-10 cursor-pointer rounded-xl text-white border-2 border-white transition duration-500 ease-in-out bg-transparent hover:bg-blue-800 hover:text-white p-3">
-                            <x-back :unite="$unite">
+                            <x-back :espece="$espece">
                                 {{ __("Back") }}
                             </x-back>
                         </div>
