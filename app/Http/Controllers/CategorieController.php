@@ -31,7 +31,7 @@ class CategorieController extends Controller
     public function store(Request $request)
     {
         if ($request->validate([
-            'nom_categorie' => ['required', 'max:45', 'regex:/^[A-Za-z ]+$/'],
+            'nom_categorie' => ['required', 'max:45', 'regex:/^[\p{L} ]+$/'],
             'affiche' => ['required']
         ], [
             'nom_categorie.required' => 'Le champ nom est requis',
@@ -45,7 +45,7 @@ class CategorieController extends Controller
             $categories->nom_categorie = $categorie;
             $categories->affiche = $affiche ? 1 : 0;
             $categories->save();
-            return redirect()->route('categories.index')->with("success", "La sous-catégorie a été créée avec succès !");
+            return redirect()->route('categories.index')->with("success", "La catégorie a été créée avec succès !");
         } else {
             // cela sert à revenir sur la page avec l'input
             return redirect()->back();
@@ -75,7 +75,7 @@ class CategorieController extends Controller
     public function update(Request $request, int $id)
     {
         if ($request->validate([
-            'nom_categorie' => ['required', 'max:45', 'regex:/^[A-Za-z ]+$/'],
+            'nom_categorie' => ['required', 'max:45', 'regex:/^[\p{L} ]+$/'],
             'affiche' => ['required']
         ], [
             'nom_categorie.required' => 'Le champ nom est requis',
@@ -89,7 +89,7 @@ class CategorieController extends Controller
             $categories->nom_categorie = $categorie;
             $categories->affiche = $affiche ? 1 : 0;
             $categories->save();
-            return redirect()->route('categories.index')->with("success", "La sous-catégorie a été modifiée avec succès !");
+            return redirect()->route('categories.index')->with("success", "La catégorie a été modifiée avec succès !");
         } else {
             // cela sert à revenir sur la page avec l'input
             return redirect()->back();
@@ -103,6 +103,6 @@ class CategorieController extends Controller
     {
         Categorie::destroy($id);
 
-        return redirect()->route('categories.index')->with('success', "La sous-catégorie a été supprimée avec succès !");
+        return redirect()->route('categories.index')->with('success', "La catégorie a été supprimée avec succès !");
     }
 }

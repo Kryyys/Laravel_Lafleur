@@ -19,7 +19,7 @@
                             <label for="evenement"> {{__("Name of the new event")}} :</label>
                                 <br><br>
                                 <input type="text" name="nom_evenement" class="text-gray-900">
-                                @error('evenement')
+                                @error('nom_evenement')
                                 <div class="text-red-500">{{$message}}</div>
                                 @enderror
 

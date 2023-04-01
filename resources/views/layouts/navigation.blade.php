@@ -31,10 +31,16 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('sousCategories.index')" :active="request()->routeIs('sousCategories')">
-                        {{ __('Sub-Category') }}
+                        {{ __('Sub-Categories') }}
                     </x-nav-link>
                 </div>
-                
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories')">
+                        {{ __('Categories') }}
+                    </x-nav-link>
+                </div>
+
             </div>
 
             <!-- Settings Dropdown -->

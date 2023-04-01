@@ -31,7 +31,7 @@ class SousCategorieController extends Controller
     public function store(Request $request)
     {
         if ($request->validate([
-            'nom_sous_categorie' => ['required', 'max:45', 'regex:/^[A-Za-z ]+$/'],
+            'nom_sous_categorie' => ['required', 'max:45', 'regex:/^[\p{L} ]+$/'],
             'affiche' => ['required']
         ], [
             'nom_sous_categorie.required' => 'Le champ nom est requis',
@@ -75,7 +75,7 @@ class SousCategorieController extends Controller
     public function update(Request $request, int $id)
     {
         if ($request->validate([
-            'nom_sous_categorie' => ['required', 'max:45', 'regex:/^[A-Za-z ]+$/'],
+            'nom_sous_categorie' => ['required', 'max:45', 'regex:/^[\p{L} ]+$/'],
             'affiche' => ['required']
         ], [
             'nom_sous_categorie.required' => 'Le champ nom est requis',

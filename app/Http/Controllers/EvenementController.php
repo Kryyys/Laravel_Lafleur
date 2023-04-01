@@ -32,7 +32,7 @@ class EvenementController extends Controller
     {
 
         if ($request->validate([
-            'nom_evenement' => ['required', 'max:45', 'regex:/^[A-Za-z ]+$/'],
+            'nom_evenement' => ['required', 'max:45', 'regex:/^[\p{L} ]+$/'],
             'affiche' => ['required']
         ], [
             'nom_evenement.required' => 'Le champ nom est requis',
@@ -76,7 +76,7 @@ class EvenementController extends Controller
     public function update(Request $request, int $id)
     {
         if ($request->validate([
-            'nom_evenement' => ['required', 'max:45', 'regex:/^[A-Za-z ]+$/'],
+            'nom_evenement' => ['required', 'max:45', 'regex:/^[\p{L} ]+$/'],
             'affiche' => ['required']
         ], [
             'nom_evenement.required' => 'Le champ nom est requis',

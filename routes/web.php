@@ -6,6 +6,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CouleurController;
 use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\SousCategorieController;
+use App\Http\Controllers\CategorieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +38,6 @@ Route::resource('articles', ArticleController::class);
 Route::resource('couleurs', CouleurController::class);
 Route::resource('evenements', EvenementController::class);
 Route::resource('sousCategories', SousCategorieController::class);
+Route::resource('categories', CategorieController::class);
 
 require __DIR__ . '/auth.php';

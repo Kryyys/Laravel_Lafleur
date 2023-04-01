@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Liste des Couleurs') }}
+            {{ __('Categories') }}
         </h2>
     </x-slot>
 
@@ -10,57 +10,63 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
-                    <h1 class="text-center text-3xl font-bold underline pb-10">{{__("List of all Colors")}}</h1>
+                    <h1 class="text-center text-3xl font-bold underline pb-10">{{__("List of all Categories")}}</h1>
+
+                    @if(session('success'))
+                    <div class="alert alert-success text-green-500">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+
+
+                    <div class="flex items-center justify-center">
+                        <a href="{{route('categories.create')}}">
+                            <div class="creer w-auto cursor-pointer rounded-xl text-white border-2 border-white transition duration-500 ease-in-out bg-transparent hover:bg-blue-800 hover:text-white p-3">
+                                {{__("Create")}}
+                            </div>
+                        </a>
+                    </div>
+
+
 
                     <div id="tableau">
 
-                        <table cellspacing="10" cellpadding="10">
-
-                            <thead>
-                                <tr>
-                                    <th class="w-20 pl-5">Id</th>
-                                    <th class="w-60">Nom</th>
-                                    <!-- <th class="w-72">Action</th> -->
-                                    <th>
-                                    <!-- <div class="creer w-16">
-                                            <a href="{{route('couleurs.create')}}">Créer</a>
-                                        </div> -->
-                                    </th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @if (count($couleurs) > 0)
-                                <ul>
-                                    @foreach ($couleurs as $couleur)
+                        <div class="mx-auto my-2 p-6 bg-white dark:bg-gray-800">
+                            <table class="w-full">
+                                <thead class="bg-gray-300 text-left text-xs font-bold uppercase tracking-wider">
                                     <tr>
-                                        <td class="pl-5">{{$couleur->id}}</td>
-                                        <td>{{$couleur->couleur}}</td>
-                                        <!-- <td>
-                                            <div class="flex flex-row">
-                                                <x-modifier :tag="$tag">
-                                                    Modifier
-                                                </x-modifier>
-                                                <x-voir :tag="$tag">
-                                                    Voir
-                                                </x-voir>
-                                                <x-supprimer :action="route('tags.destroy', $tag->id)"/>
-                                            </div>
-                                        </td> -->
+                                        <th class="w-1/5 px-6 py-3 text-gray-800 text-base">Id</th>
+                                        <th class="w-2/5 px-6 py-3 text-gray-800 text-base">{{ __('Name') }}</th>
+                                        <th class="w-1/5 px-6 py-3 text-gray-800 text-base">{{ __('Displayed') }}</th>
+                                        <th class="w-2/5 px-6 py-3 text-gray-800 text-base">Action</th>
                                     </tr>
-
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    @if (count($categories) > 0)
+                                    @foreach ($categories as $categorie)
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-left text-s font-medium text-gray-500 tracking-wider">{{$categorie->id}}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-left text-s font-medium text-gray-500 tracking-wider">{{$categorie->nom_categorie}}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-left text-s font-medium text-gray-500 tracking-wider">{{ $categorie->affiche ? 'Affiché' : 'Non Affiché' }}</td>
+                                        <td class="flex pt-4">
+                                            <x-update :categorie="$categorie"></x-update>
+                                            <x-delete :action="route('categories.destroy', $categorie->id)">
+                                                <i class="fa-solid fa-trash text-gray-900 transition duration-100 ease-in-out bg-transparent hover:scale-150"></i>
+                                            </x-delete>
+                                        </td>
+                                    </tr>
                                     @endforeach
-                                </ul>
-                                @else
-                                Je n'ai pas de couleurs.
-                                @endif
-                            </tbody>
+                                    @else
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap" colspan="2">{{ __('No saved category') }}</td>
+                                    </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
 
-                        </table>
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
 </x-app-layout>
