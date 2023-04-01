@@ -17,41 +17,34 @@
                     </x-nav-link>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('couleurs.index')" :active="request()->routeIs('couleurs')">
-                        {{ __('Color') }}
-                    </x-nav-link>
+                <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <div class="relative group">
+                        <x-nav-link :href="route('articles.index')" :active="request()->routeIs('articles')">
+                            {{ __('Items') }}
+                        </x-nav-link>
+                        <div class="text-center absolute hidden group-hover:block bg-black text-black py-2 rounded-md">
+                            <x-nav-link :href="route('couleurs.index')" :active="request()->routeIs('couleurs')" class="block px-10 py-2 text-gray-700">
+                                {{ __('Color') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('evenements.index')" :active="request()->routeIs('evenements')" class="block px-10 py-2 text-gray-700">
+                                {{ __('Events') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('sousCategories.index')" :active="request()->routeIs('sousCategories')" class="block px-10 py-2 text-gray-700">
+                                {{ __('Sub-Categories') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories')" class="block px-10 py-2 text-gray-700">
+                                {{ __('Categories') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('unites.index')" :active="request()->routeIs('unites')" class="block px-10 py-2 text-gray-700">
+                                {{ __('Units') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('especes.index')" :active="request()->routeIs('especes')" class="block px-10 py-2 text-gray-700">
+                                {{ __('Species') }}
+                            </x-nav-link>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('evenements.index')" :active="request()->routeIs('evenements')">
-                        {{ __('Events') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('sousCategories.index')" :active="request()->routeIs('sousCategories')">
-                        {{ __('Sub-Categories') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories')">
-                        {{ __('Categories') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('unites.index')" :active="request()->routeIs('unites')">
-                        {{ __('Units') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('especes.index')" :active="request()->routeIs('especes')">
-                        {{ __('Species') }}
-                    </x-nav-link>
-                </div>
 
             </div>
 

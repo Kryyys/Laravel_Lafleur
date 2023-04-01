@@ -36,7 +36,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('articles', ArticleController::class);
-
 Route::resource('couleurs', CouleurController::class);
 Route::resource('evenements', EvenementController::class);
 Route::resource('sousCategories', SousCategorieController::class);
