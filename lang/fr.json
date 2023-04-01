@@ -1,4 +1,10 @@
 {
+    "Name of the new unit": "Nom de la nouvelle unité",
+    "Create an unit": "Créer une nouvelle unité",
+    "Edit the unit": "Modifier l'unité",
+    "New name of the unit": "Nouveau nom de l'unité",
+    "List of all units": "Liste de toutes les unités",
+    "Units": "Unités",
     "Name of the new category": "Nom de la nouvelle catégorie",
     "Create a category": "Créer une nouvelle catégorie",
     "Display the category in the navbar ?": "Afficher la catégorie dans la barre de navigation ?",

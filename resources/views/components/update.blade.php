@@ -2,6 +2,7 @@
 @props(['evenement'])
 @props(['sousCategorie'])
 @props(['categorie'])
+@props(['unite'])
 
 @if (isset($couleur))
     <a href="{{route('couleurs.edit', $couleur->id)}}">
@@ -29,6 +30,14 @@
 
 @if (isset($categorie))
     <a href="{{route('categories.edit', $categorie->id)}}">
+    <div class="modifier w-20">
+    <i class="fa-regular fa-pen-to-square text-gray-900 transition duration-100 ease-in-out bg-transparent hover:scale-150"></i>
+    </div>
+</a>
+@endif
+
+@if (isset($unite))
+    <a href="{{route('unites.edit', $unite->id)}}">
     <div class="modifier w-20">
     <i class="fa-regular fa-pen-to-square text-gray-900 transition duration-100 ease-in-out bg-transparent hover:scale-150"></i>
     </div>
