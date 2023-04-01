@@ -31,7 +31,7 @@ class CouleurController extends Controller
     public function store(Request $request)
     {
         if ($request->validate([
-            'couleur' => ['required', 'max:45', 'regex:/^[A-Za-z]+$/']
+            'couleur' => ['required', 'max:45', 'regex:/^[A-Za-z ]+$/']
         ], [
             'couleur.required' => 'Le champ couleur est requis',
             'couleur.max:45' => 'Le champ couleur ne doit pas contenir plus de 45 caractères',
@@ -71,7 +71,7 @@ class CouleurController extends Controller
     public function update(Request $request, int $id)
     {
         if ($request->validate([
-            'couleur' => ['required', 'max:45', 'regex:/^[A-Za-z]+$/']
+            'couleur' => ['required', 'max:45', 'regex:/^[A-Za-z ]+$/']
         ], [
             'couleur.required' => 'Le champ couleur est requis',
             'couleur.max:45' => 'Le champ couleur ne doit pas contenir plus de 45 caractères',

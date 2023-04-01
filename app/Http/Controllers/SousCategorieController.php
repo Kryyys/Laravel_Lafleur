@@ -22,7 +22,7 @@ class SousCategorieController extends Controller
     public function create()
     {
         $sousCategories = new SousCategorie();
-        return view('sousCategories.create', ['sousCategories' => $sousCategories]);
+        return view('sousCategories.create', ['sousCategorie' => $sousCategories]);
     }
 
     /**
@@ -31,7 +31,7 @@ class SousCategorieController extends Controller
     public function store(Request $request)
     {
         if ($request->validate([
-            'nom_sous_categorie' => ['required', 'max:45', 'regex:/^[A-Za-z]+$/'],
+            'nom_sous_categorie' => ['required', 'max:45', 'regex:/^[A-Za-z ]+$/'],
             'affiche' => ['required']
         ], [
             'nom_sous_categorie.required' => 'Le champ nom est requis',
@@ -66,7 +66,7 @@ class SousCategorieController extends Controller
     public function edit(string $id)
     {
         $sousCategories = SousCategorie::findOrFail($id);
-        return view('sousCategories.edit', ['sous_categorie' => $sousCategories]);
+        return view('sousCategories.edit', ['sousCategorie' => $sousCategories]);
     }
 
     /**
@@ -75,7 +75,7 @@ class SousCategorieController extends Controller
     public function update(Request $request, int $id)
     {
         if ($request->validate([
-            'nom_sous_categorie' => ['required', 'max:45', 'regex:/^[A-Za-z]+$/'],
+            'nom_sous_categorie' => ['required', 'max:45', 'regex:/^[A-Za-z ]+$/'],
             'affiche' => ['required']
         ], [
             'nom_sous_categorie.required' => 'Le champ nom est requis',
