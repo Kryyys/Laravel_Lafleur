@@ -9,7 +9,7 @@ class Categorie extends Model
 {
     use HasFactory;
 
-    protected $table = "lf_categories_articles";
+    protected $table = "lf_categories";
     protected $primaryKey = "id";
     protected $fillable = array('nom_categorie', 'affiche');
     public $timestamps = false;
@@ -21,6 +21,6 @@ class Categorie extends Model
      */
     public function sousCategorie()
     {
-        return $this->hasMany(SousCategorie::class, 'sous_categorie_id');
+        return $this->hasMany(SousCategorie::class);
     }
 }

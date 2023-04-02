@@ -29,10 +29,10 @@ class Article extends Model
      *
      * @return void
      */
-    // public function sousCategorie()
-    // {
-    //     return $this->hasManyThrough(SousCategorie::class, Categorie::class);
-    // }
+    public function sousCategorie()
+    {
+        return $this->belongsTo(SousCategorie::class, 'sous_categorie_id');
+    }
 
     /**
      * Un article appartient à une espèce
@@ -60,7 +60,7 @@ class Article extends Model
     }
 
     /**
-     * Un article peut appartenir à plusieurs évènements 
+     * Un article peut appartenir à plusieurs évènements
      *
      * @return void
      */

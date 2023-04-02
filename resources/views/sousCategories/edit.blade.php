@@ -29,6 +29,18 @@
                                 <option value="0" {{ !$sousCategorie->affiche ? 'selected' : '' }}>Non affiché</option>
                                 <option value="1" {{ $sousCategorie->affiche ? 'selected' : '' }}>Affiché</option>
                             </select>
+                            <br><br>
+                            <label for="categorie">{{__("Choose a Category")}} :</label>
+                            <br><br>
+                            <select name="categorie_id" id="categorie_id" class="text-gray-900">
+                                @foreach ($categories as $categorie)
+                                <option value="{{ $categorie->id }}" {{ $sousCategorie->categorie_id == $categorie->id ? 'selected' : '' }}>
+                                    {{ $categorie->nom_categorie }}
+                                </option>
+                                @endforeach
+                            </select>
+
+
                         </div>
 
                         <br>

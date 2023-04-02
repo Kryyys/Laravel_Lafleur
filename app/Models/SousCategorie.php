@@ -11,7 +11,7 @@ class SousCategorie extends Model
 
     protected $table = "lf_sous_categories";
     protected $primaryKey = "id";
-    protected $fillable = array('nom_sous_categorie', 'affiche');
+    protected $fillable = array('nom_sous_categorie', 'affiche', 'categorie_id');
     public $timestamps = false;
 
         /**
@@ -21,6 +21,16 @@ class SousCategorie extends Model
      */
     public function Categorie()
     {
-        return $this->belongsTo(Categorie::class);
+        return $this->belongsTo(Categorie::class, 'categorie_id');
+    }
+
+        /**
+     * une sous-catégorie a plusieurs articles
+     *
+     * @return void
+     */
+    public function article()
+    {
+        return $this->hasMany(SousCategorie::class);
     }
 }

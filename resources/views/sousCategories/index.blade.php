@@ -35,10 +35,11 @@
                             <table class="w-full">
                                 <thead class="bg-gray-300 text-left text-xs font-bold uppercase tracking-wider">
                                     <tr>
-                                        <th class="w-1/5 px-6 py-3 text-gray-800 text-base">Id</th>
-                                        <th class="w-2/5 px-6 py-3 text-gray-800 text-base">{{ __('Name') }}</th>
+                                        <th class="w-20 px-6 py-3 text-gray-800 text-base">Id</th>
+                                        <th class="w-100 px-6 py-3 text-gray-800 text-base">{{ __('Name') }}</th>
+                                        <th class="w-100 px-6 py-3 text-gray-800 text-base">{{ __('Category Associated') }}</th>
                                         <th class="w-1/5 px-6 py-3 text-gray-800 text-base">{{ __('Displayed') }}</th>
-                                        <th class="w-2/5 px-6 py-3 text-gray-800 text-base">Action</th>
+                                        <th class="w-1/5 px-6 py-3 text-gray-800 text-base">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
@@ -47,6 +48,7 @@
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-left text-s font-medium text-gray-500 tracking-wider">{{$sousCategorie->id}}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-left text-s font-medium text-gray-500 tracking-wider">{{$sousCategorie->nom_sous_categorie}}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-left text-s font-medium text-gray-500 tracking-wider">{{ $sousCategorie->Categorie->nom_categorie }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-left text-s font-medium text-gray-500 tracking-wider">{{ $sousCategorie->affiche ? 'Affiché' : 'Non Affiché' }}</td>
                                         <td class="flex pt-4">
                                             <x-update :sousCategorie="$sousCategorie"></x-update>
