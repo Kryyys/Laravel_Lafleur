@@ -1,22 +1,11 @@
-<!-- @props(['jeu'])
-@props(['categorie'])
-@props(['tag'])
+@props(['article'])
 
 
-@if (isset($jeu))
-    <a href="{{route('jeux.show', $jeu->id)}}">
-    <div class="voir w-14">{{$slot}}</div>
+@if (isset($article))
+    <a href="{{route('articles.show', $article->id)}}">
+    <div class="show w-20">
+    <i class="fa-regular fa-eye text-gray-900 transition duration-100 ease-in-out bg-transparent hover:scale-150"></i>
+    </div>
 </a>
 @endif
 
-@if (isset($categorie))
-    <a href="{{route('categories.show', $categorie->id)}}">
-    <div class="voir w-14">{{$slot}}</div>
-</a>
-@endif
-
-@if (isset($tag))
-    <a href="{{route('tags.show', $tag->id)}}">
-    <div class="voir w-14">{{$slot}}</div>
-</a>
-@endif -->

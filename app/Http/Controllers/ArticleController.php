@@ -29,7 +29,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -37,7 +37,8 @@ class ArticleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $article = Article::findOrFail($id);
+        return view('articles.show', ['articles' => $article]);
     }
 
     /**
