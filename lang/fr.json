@@ -1,4 +1,11 @@
 {
+    "Sale item ?": "Article soldé ?",
+    "New quantity of the item": "Nouvelle quantité de l'article",
+    "New picture of the item": "Nouvelle image de l'article",
+    "New price of the item": "Nouveau prix de l'article",
+    "Sub-category of the item": "Sous-catégorie de l'article",
+    "New name of the item": "Nouveau nom de l'article",
+    "Edit the Item": "Modifier l'article",
     "Choose a Category": "Choisissez une catégorie",
     "Category Associated": "Catégorie associée",
     "List of all Items": "Liste de tous les articles",
