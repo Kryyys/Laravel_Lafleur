@@ -47,7 +47,7 @@
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-left text-s font-medium text-gray-500 tracking-wider">{{$evenement->id}}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-left text-s font-medium text-gray-500 tracking-wider">{{$evenement->nom_evenement}}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-left text-s font-medium text-gray-500 tracking-wider">{{ $evenement->affiche ? 'Affiché' : 'Non Affiché' }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-left text-s font-medium text-gray-500 tracking-wider">{{$evenement->affiche ? 'Affiché' : 'Non Affiché' }}</td>
                                         <td class="flex pt-4">
                                             <x-update :evenement="$evenement"></x-update>
                                             <x-delete :action="route('evenements.destroy', $evenement->id)">

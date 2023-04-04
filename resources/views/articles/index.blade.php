@@ -28,7 +28,7 @@
 
                     <div class="mt-10 grid grid-cols-4 gap-10">
                         @foreach ($articles as $article)
-                        <div class="bg-white dark:bg-gray-600 rounded-lg shadow-md p-6 mb-6">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 mb-6">
                             <div class="flex flex-col justify-center items-center">
                                 <div>
                                     <img src="../../Site_Lafleur/public/Images/{{$article->image}}" alt="{{$article->nom}}" class="w-60 h-60 object-contain rounded-lg">
@@ -40,12 +40,10 @@
                                 </div>
                             </div>
                             <div class="mt-4 flex justify-center items-center">
-                                <x-show :article="$article" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
-                                    Voir
-                                    </x-shox>
+                                <x-show :article="$article"></x-show>
                                     <x-update :article="$article"></x-update>
                                     <x-delete :action="route('articles.destroy', $article->id)">
-                                        <i class="fa-solid fa-trash text-gray-900 transition duration-100 ease-in-out bg-transparent hover:scale-150"></i>
+                                        <i class="fa-solid fa-trash text-white transition duration-100 ease-in-out bg-transparent hover:scale-150"></i>
                                     </x-delete>
                             </div>
                         </div>
