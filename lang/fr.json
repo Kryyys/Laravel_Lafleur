@@ -1,4 +1,12 @@
 {
+    "Secondary color of the item": "Couleur secondaire de l'article",
+    "Species of the item": "Espèce de l'article",
+    "Unity of the item": "Unité de l'article",
+    "Color of the item": "Couleur de l'article",
+    "Height": "Taille",
+    "Weight": "Poids",
+    "Inventory date": "Date du dernier inventaire",
+    "New price for the sale item": "Nouveau prix de l'article en promotion",
     "Sale item ?": "Article soldé ?",
     "New quantity of the item": "Nouvelle quantité de l'article",
     "New picture of the item": "Nouvelle image de l'article",
