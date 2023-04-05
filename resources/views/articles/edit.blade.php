@@ -18,7 +18,7 @@
                         <div class="ml-10">
                             <label for="article"> {{__("New name of the item")}} :</label>
                             <br><br>
-                            <input type="text" name="nom" class="text-gray-900">
+                            <input type="text" name="nom" value="{{$article->nom}}" class="text-gray-900">
                             @error('nom')
                             <div class="text-red-500">{{$message}}</div>
                             @enderror
@@ -29,8 +29,7 @@
                             <br><br>
                             <select name="sous_categorie_id" id="sous_categorie_id" class="text-gray-900">
                                 @foreach($sousCategorie as $sousCategorieArticle)
-                                <option value="{{ $sousCategorieArticle->id }}"
-                                {{ $article->sous_categorie_id == $sousCategorieArticle->id ? 'selected' : '' }}>{{ $sousCategorieArticle->nom_sous_categorie }}
+                                <option value="{{ $sousCategorieArticle->id }}" {{ $article->sous_categorie_id == $sousCategorieArticle->id ? 'selected' : '' }}>{{ $sousCategorieArticle->nom_sous_categorie }}
                                 </option>
                                 @endforeach
                             </select>
@@ -42,20 +41,28 @@
 
                             <label for="prix_unitaire"> {{__("New price of the item")}} :</label>
                             <br><br>
-                            <input type="text" name="prix_unitaire" class="text-gray-900">
-                            @error('nom')
+                            <input type="text" name="prix_unitaire" value="{{$article->prix_unitaire}}" class="text-gray-900">
+                            @error('prix_unitaire')
                             <div class="text-red-500">{{$message}}</div>
                             @enderror
 
                             <br><br>
                             <label for="prix_unitaire"> {{__("New picture of the item")}} :</label>
                             <br><br>
+                            <img id="image-preview" src="#" alt="Aperçu de l'image" style="display: none;" width="400px">
+                            <input type="file" name="image" id="image" onchange="previewImage(event);">
+                            @push('scripts')
+                            <script src="{{ asset('../resources/js/main.js') }}"></script>
+                            @endpush
+                            @error('image')
+                            <div class="text-red-500">{{$message}}</div>
+                            @enderror
 
-
+                            <br><br>
                             <label for="quantite_dispo"> {{__("New quantity of the item")}} :</label>
                             <br><br>
-                            <input type="text" name="quantite_dispo" class="text-gray-900">
-                            @error('nom')
+                            <input type="text" name="quantite_dispo" value="{{$article->quantite_dispo}}" class="text-gray-900">
+                            @error('quantite_dispo')
                             <div class="text-red-500">{{$message}}</div>
                             @enderror
 
@@ -63,8 +70,8 @@
 
                             <label for="prix_unitaire"> {{__("Sale item ?")}} </label>
                             <br><br>
-                            <input type="text" name="prix_unitaire" class="text-gray-900">
-                            @error('nom')
+                            <input type="text" name="prix_unitaire" value="{{$article->prix_unitaire}}" class="text-gray-900">
+                            @error('prix_unitaire')
                             <div class="text-red-500">{{$message}}</div>
                             @enderror
 

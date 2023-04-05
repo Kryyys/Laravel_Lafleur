@@ -48,9 +48,7 @@ class ArticleController extends Controller
             'unite_id' => ['required', 'exists:lf_unites,id'],
             'espece_id' => ['required', 'exists:lf_especes,id'],
             'couleur_secondaire_id' => ['required', 'exists:lf_couleurs,id'],
-            'sous_categorie_id' => ['required', 'exists:lf_sous_categories,id']
-
-        ], [
+            'sous_categorie_id' => ['required', 'exists:lf_sous_categories,id'],
             'nom_sous_categorie.required' => 'Le champ nom est requis',
             'nom_sous_categorie.max:45' => 'Le champ nom ne doit pas contenir plus de 45 caractères',
             'nom_sous_categorie.regex' => 'Le champ ne doit contenir que des lettres',
