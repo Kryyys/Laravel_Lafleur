@@ -51,11 +51,7 @@
 
                                 <label for="image"> {{__("New picture of the item")}} :</label>
                                 <br><br>
-                                <img id="image-preview" src="#" alt="Aperçu de l'image" style="display: none;" width="400px">
-                                <input type="file" name="image" id="image" onchange="previewImage(event);" value="{{$article->image}}">
-                                @push('scripts')
-                                <script src="{{ asset('../resources/js/main.js') }}"></script>
-                                @endpush
+                                <input type="text" name="image" value="{{$article->image}}" class="text-gray-900">
                                 @error('image')
                                 <div class="text-red-500">{{$message}}</div>
                                 @enderror
@@ -97,7 +93,7 @@
                                 <label for="date_inventaire"> {{__("Inventory date")}} :</label>
                                 <br><br>
                                 <input type="text" name="date_inventaire" value="{{$article->date_inventaire}}" class="text-gray-900">
-                                @error('nom')
+                                @error('date_inventaire')
                                 <div class="text-red-500">{{$message}}</div>
                                 @enderror
 
@@ -106,7 +102,7 @@
                                 <label for="poids"> {{__("Weight")}} :</label>
                                 <br><br>
                                 <input type="text" name="poids" value="{{$article->poids}}" class="text-gray-900">
-                                @error('nom')
+                                @error('poids')
                                 <div class="text-red-500">{{$message}}</div>
                                 @enderror
 
@@ -115,7 +111,7 @@
                                 <label for="taille"> {{__("Height")}} :</label>
                                 <br><br>
                                 <input type="text" name="taille" value="{{$article->taille}}" class="text-gray-900">
-                                @error('nom')
+                                @error('taille')
                                 <div class="text-red-500">{{$message}}</div>
                                 @enderror
 
@@ -138,9 +134,9 @@
                                 <label for="couleur_secondaire_id">{{__("Secondary color of the item")}} :</label>
                                 <br><br>
                                 <select name="couleur_secondaire_id" id="couleur_secondaire_id" class="text-gray-900">
-                                <option value="">Pas de couleur secondaire</option>
-                                    @foreach($couleurSecondaire as $couleurS)
-                                    <option value="{{ $couleurS->id }}" {{ $couleurS->couleur_secondaire_id == $couleurS->id ? 'selected' : '' }}>{{ $couleurS->couleur }}
+                                    <option value="">Pas de couleur secondaire</option>
+                                    @foreach($couleurSecondaire as $couleur)
+                                    <option value="{{ $couleur->id }}" {{ $article->couleur_secondaire_id == $couleur->id ? 'selected' : '' }}>{{ $couleur->couleur }}
                                     </option>
                                     @endforeach
                                 </select>

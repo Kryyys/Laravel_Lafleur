@@ -51,7 +51,7 @@ class Article extends Model
      */
     public function couleur()
     {
-        return $this->belongsTo(Couleur::class, 'couleur_id');
+        return $this->belongsTo(Couleur::class);
     }
 
     public function couleurSecondaire()

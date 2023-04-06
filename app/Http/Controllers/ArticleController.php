@@ -27,7 +27,24 @@ class ArticleController extends Controller
     public function create()
     {
         $articles = new Article;
-        return view('articles.create', ['articles' => $articles]);
+        $categories = Categorie::all();
+        $sousCategories = SousCategorie::all();
+        $couleurSecondaires = Couleur::all();
+        $evenements = Evenement::all();
+        $couleurs = Couleur::all();
+        $couleurSecondaires = Couleur::whereNotIn('id', [$articles->couleur_id])->get();
+        $especes = Espece::all();
+        $unites = Unite::all();
+        return view('articles.create', [
+            'article' => $articles,
+            'categorie' => $categories,
+            'sousCategorie' => $sousCategories,
+            'evenement' => $evenements,
+            'couleur' => $couleurs,
+            'couleurSecondaire' => $couleurSecondaires,
+            'espece' => $especes,
+            'unite' => $unites
+        ]);
     }
 
     /**
@@ -37,28 +54,44 @@ class ArticleController extends Controller
     {
         if ($request->validate([
             'nom' => ['required', 'max:45', 'regex:/^[\p{L} ]+$/'],
-            'sous_categorie_id' => ['required', 'exists:lf_sous_categories,id'],
-            'prix-unitaire' => ['required', 'regex:/^\d{1,2}(\.\d{1,2})?$/'],
+            'prix_unitaire' => ['required', 'regex:/^\d{4,2}(\.\d{4,2})?$/'],
             'image' => ['required'],
             'quantite_dispo' => ['required', 'regex:/^(?:[1-9]\d{0,2}|1000)$/'],
             'promotion' => ['required'],
-            'prix_promotion' => ['regex:/^\d{1,2}(\.\d{1,2})?$/'],
-            'date_inventaire',
-            'poids' => ['regex:/^(?:[1-9]\d{0,2}|1000)$/'],
-            'taille' => ['regex:/^(?:[1-9]\d{0,2}|1000)$/'],
-            'couleur_id' => ['required', 'exists:lf_couleurs,id'],
-            'unite_id' => ['required', 'exists:lf_unites,id'],
-            'espece_id' => ['required', 'exists:lf_especes,id'],
-            'couleur_secondaire_id' => ['required', 'exists:lf_couleurs,id'],
+            'prix_promotion' => ["nullable"],
+            'date_inventaire' => ["nullable"],
+            'poids' => ["nullable"],
+            'taille' => ["nullable"],
+            'poids' => ["nullable", 'regex:/^(?:[1-9]\d{0,2}|1000)$/'],
+            'taille' => ["nullable", 'regex:/^(?:[1-9]\d{0,2}|1000)$/'],
+            'couleur_id' => ['required', 'integer', 'exists:lf_couleurs,id'],
+            'unite_id' => ['required', 'integer', 'exists:lf_unites,id'],
+            'espece_id' => ['required', 'integer', 'exists:lf_especes,id'],
+            'couleur_secondaire_id' => ["nullable", 'integer', 'exists:lf_couleurs,id'],
+            'sous_categorie_id' => ['required', 'integer', 'exists:lf_sous_categories,id'],
 
-            'nom_sous_categorie.required' => 'Le champ nom est requis',
-            'nom_sous_categorie.max:45' => 'Le champ nom ne doit pas contenir plus de 45 caractères',
-            'nom_sous_categorie.regex' => 'Le champ ne doit contenir que des lettres',
-            'affiche.required' => "Le champ Afficher l'évènement est requis",
-            'categorie_id.required' => "Le champ Choisir la Catégorie est requis"
+            'nom.required' => 'Le champ Nom est requis',
+            'nom.max:45' => 'Le champ Nom ne doit pas contenir plus de 45 caractères',
+            'nom.regex' => 'Le champ Nom ne doit contenir que des lettres',
+            'prix_unitaire.required' => 'Le champ Prix est requis',
+            'prix_unitaire.regex' => 'Le champ Prix ne doit contenir que des chiffres',
+            'image.required' => 'Le champ image est requis',
+            'image.image' => 'Le champ Image doit être une image',
+            'image.max:2048' => "L'image ne doit pas dépasser 2Mo",
+            'image.regex' => "L'image doit être un jpg, jpeg ou un png",
+            'quantite_dispo.required' => 'Le champ Quantité est requis',
+            'quantite_dispo.regex' => 'Le champ Quantité ne doit contenir que des chiffres',
+            'promotion.required' => 'Le champ Promotion est requis',
+
+            'couleur_id.required' => 'Le champ Couleur est requis',
+            'unite_id.required' => 'Le champ Unité est requis',
+            'espece_id.required' => 'Le champ Espèce est requis',
+            'sous_categorie_id.required' => 'Le champ Sous-Catégorie est requis'
+
+
         ])) {
             $article = $request->input('nom');
-            $prix = $request->input('prix');
+            $prix = $request->input('prix_unitaire');
             $image = $request->input('image');
             $quantite = $request->input('quantite_dispo');
             $promotion = $request->input('promotion');
@@ -68,26 +101,28 @@ class ArticleController extends Controller
             $taille = $request->input('taille');
             $couleurId = $request->input('couleur_id');
             $uniteId = $request->input('unite_id');
-            $especeId = $request->input('expece_id');
+            $especeId = $request->input('espece_id');
             $couleurSecondaireId = $request->input('couleur_secondaire_id');
             $sousCategorieId = $request->input('sous_categorie_id');
+
             $articles = new Article();
+
             $articles->nom = $article;
             $articles->prix_unitaire = $prix;
             $articles->image = $image;
-            $articles->quantite = $quantite;
+            $articles->quantite_dispo = $quantite;
             $articles->promotion = $promotion ? 1 : 0;
             $articles->prix_promotion = $prixPromotion;
-            $articles->date_inventaire = $dateInventaire ? $dateInventaire : "Pas d'inventaire";
-            $articles->poids = $poids ? $poids : "Pas de poids";
-            $articles->taille = $taille ? $taille : "Pas de taille";
+            $articles->date_inventaire = $dateInventaire;
+            $articles->poids = $poids;
+            $articles->taille = $taille;
             $articles->couleur_id = $couleurId;
             $articles->unite_id = $uniteId;
             $articles->espece_id = $especeId;
-            $articles->couleur_secondaire_id = $couleurSecondaireId ? $couleurSecondaireId : "Pas de couleur secondaire";
+            $articles->couleur_secondaire_id = $couleurSecondaireId;
             $articles->sous_categorie_id = $sousCategorieId;
             $articles->save();
-            return redirect()->route('articles.index')->with("success", "L'article a été créé avec succès !");
+            return redirect()->route('articles.index')->with("success", "L'article a été modifié avec succès !");
         } else {
             // cela sert à revenir sur la page avec l'input
             return redirect()->back();
@@ -114,6 +149,7 @@ class ArticleController extends Controller
         $couleurSecondaires = Couleur::all();
         $evenements = Evenement::all();
         $couleurs = Couleur::all();
+        $couleurSecondaires = Couleur::whereNotIn('id', [$articles->couleur_id])->get();
         $especes = Espece::all();
         $unites = Unite::all();
         return view('articles.edit', [
@@ -135,16 +171,16 @@ class ArticleController extends Controller
     {
         if ($request->validate([
             'nom' => ['required', 'max:45', 'regex:/^[\p{L} ]+$/'],
-            'prix-unitaire' => ['required', 'regex:/^\d{1,2}(\.\d{1,2})?$/'],
-            'image' => ['nullable', 'image', 'max:2048', 'regex:/^.+\.(jpg|jpeg|png)$/i'],
+            'prix_unitaire' => ['required', 'regex:/^\d{1,2}(\.\d{1,2})?$/'],
+            'image' => ['required'],
             'quantite_dispo' => ['required', 'regex:/^(?:[1-9]\d{0,2}|1000)$/'],
             'promotion' => ['required'],
             'prix_promotion' => ["nullable"],
             'date_inventaire' => ["nullable"],
-                        'poids' => ["nullable"],
+            'poids' => ["nullable"],
             'taille' => ["nullable"],
-            // 'poids' => ["nullable", 'regex:/^(?:[1-9]\d{0,2}|1000)$/'],
-            // 'taille' => ["nullable", 'regex:/^(?:[1-9]\d{0,2}|1000)$/'],
+            'poids' => ["nullable", 'regex:/^(?:[1-9]\d{0,2}|1000)$/'],
+            'taille' => ["nullable", 'regex:/^(?:[1-9]\d{0,2}|1000)$/'],
             'couleur_id' => ['required', 'exists:lf_couleurs,id'],
             'unite_id' => ['required', 'exists:lf_unites,id'],
             'espece_id' => ['required', 'exists:lf_especes,id'],
@@ -156,6 +192,7 @@ class ArticleController extends Controller
             'nom.regex' => 'Le champ Nom ne doit contenir que des lettres',
             'prix_unitaire.required' => 'Le champ Prix est requis',
             'prix_unitaire.regex' => 'Le champ Prix ne doit contenir que des chiffres',
+            'image.required' => 'Le champ image est requis',
             'image.image' => 'Le champ Image doit être une image',
             'image.max:2048' => "L'image ne doit pas dépasser 2Mo",
             'image.regex' => "L'image doit être un jpg, jpeg ou un png",
@@ -171,7 +208,7 @@ class ArticleController extends Controller
 
         ])) {
             $article = $request->input('nom');
-            $prix = $request->input('prix');
+            $prix = $request->input('prix_unitaire');
             $image = $request->input('image');
             $quantite = $request->input('quantite_dispo');
             $promotion = $request->input('promotion');
@@ -181,23 +218,25 @@ class ArticleController extends Controller
             $taille = $request->input('taille');
             $couleurId = $request->input('couleur_id');
             $uniteId = $request->input('unite_id');
-            $especeId = $request->input('expece_id');
+            $especeId = $request->input('espece_id');
             $couleurSecondaireId = $request->input('couleur_secondaire_id');
             $sousCategorieId = $request->input('sous_categorie_id');
+
             $articles = Article::find($id);
+
             $articles->nom = $article;
             $articles->prix_unitaire = $prix;
             $articles->image = $image;
-            $articles->quantite = $quantite;
+            $articles->quantite_dispo = $quantite;
             $articles->promotion = $promotion ? 1 : 0;
-            $articles->prix_promotion = $prixPromotion ? $prixPromotion : "Pas de promotion";
-            $articles->date_inventaire = $dateInventaire ? $dateInventaire : "Pas d'inventaire";
-            $articles->poids = $poids ? $poids : "Pas de poids";
-            $articles->taille = $taille ? $taille : "Pas de taille";
+            $articles->prix_promotion = $prixPromotion;
+            $articles->date_inventaire = $dateInventaire;
+            $articles->poids = $poids;
+            $articles->taille = $taille;
             $articles->couleur_id = $couleurId;
             $articles->unite_id = $uniteId;
             $articles->espece_id = $especeId;
-            $articles->couleur_secondaire_id = $couleurSecondaireId ? $couleurSecondaireId : "Pas de couleur secondaire";
+            $articles->couleur_secondaire_id = $couleurSecondaireId;
             $articles->sous_categorie_id = $sousCategorieId;
             $articles->save();
             return redirect()->route('articles.index')->with("success", "L'article a été modifié avec succès !");
