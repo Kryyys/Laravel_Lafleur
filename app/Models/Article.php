@@ -54,11 +54,6 @@ class Article extends Model
         return $this->belongsTo(Couleur::class);
     }
 
-    public function couleurSecondaire()
-    {
-        return $this->belongsTo(Couleur::class, 'couleur_secondaire_id');
-    }
-
     /**
      * Un article peut appartenir à plusieurs évènements
      *
@@ -66,6 +61,6 @@ class Article extends Model
      */
     public function evenement()
     {
-        return $this->belongsToMany(Evenement::class);
+        return $this->belongsToMany(Evenement::class, 'lf_articles_evenements', 'lf_article_id', 'lf_evenement_id');
     }
 }

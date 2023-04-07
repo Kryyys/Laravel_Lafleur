@@ -40,6 +40,20 @@
 
                                 <br><br>
 
+                                <label for="nom_evenement">{{ __("Events of the item") }} :</label>
+                                <br><br>
+                                @foreach ($evenement as $evenementCheck)
+                                <div>
+                                    <input type="checkbox" name="evenement[]" value="{{ $evenementCheck->id }}" {{ in_array($evenementCheck->id, $articleEvenements) ? 'checked' : '' }}>
+                                    <label for="{{ $evenementCheck->id }}">{{ $evenementCheck->nom_evenement }}</label>
+                                </div>
+                                @endforeach
+                                @error('nom_evenement')
+                                <div class="text-red-500">{{$message}}</div>
+                                @enderror
+
+                                <br>
+
                                 <label for="prix_unitaire"> {{__("New price of the item")}} :</label>
                                 <br><br>
                                 <input type="text" name="prix_unitaire" value="{{$article->prix_unitaire}}" class="text-gray-900">
@@ -77,7 +91,9 @@
                                 <div class="text-red-500">{{$message}}</div>
                                 @enderror
 
-                                <br><br>
+                            </div>
+
+                            <div class="ml-10">
 
                                 <label for="prix_promotion"> {{__("New price for the sale item")}} :</label>
                                 <br><br>
@@ -86,9 +102,7 @@
                                 <div class="text-red-500">{{$message}}</div>
                                 @enderror
 
-                            </div>
-
-                            <div class="ml-10">
+                                <br><br>
 
                                 <label for="date_inventaire"> {{__("Inventory date")}} :</label>
                                 <br><br>
@@ -126,21 +140,6 @@
                                     @endforeach
                                 </select>
                                 @error('couleur_id')
-                                <div class="text-red-500">{{$message}}</div>
-                                @enderror
-
-                                <br><br>
-
-                                <label for="couleur_secondaire_id">{{__("Secondary color of the item")}} :</label>
-                                <br><br>
-                                <select name="couleur_secondaire_id" id="couleur_secondaire_id" class="text-gray-900">
-                                    <option value="">Pas de couleur secondaire</option>
-                                    @foreach($couleurSecondaire as $couleur)
-                                    <option value="{{ $couleur->id }}" {{ $article->couleur_secondaire_id == $couleur->id ? 'selected' : '' }}>{{ $couleur->couleur }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                @error('couleur_secondaire_id')
                                 <div class="text-red-500">{{$message}}</div>
                                 @enderror
 

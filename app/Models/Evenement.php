@@ -21,6 +21,6 @@ class Evenement extends Model
      */
     public function article()
     {
-        return $this->belongsToMany(Article::class);
+        return $this->belongsToMany(Article::class, 'lf_articles_evenements', 'lf_evenement_id', 'lf_article_id');
     }
 }
