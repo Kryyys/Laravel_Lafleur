@@ -9,6 +9,7 @@ use App\Http\Controllers\SousCategorieController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\UniteController;
 use App\Http\Controllers\EspeceController;
+use App\Http\Controllers\FormulaireController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,6 @@ use App\Http\Controllers\EspeceController;
 Route::get('/', function () {
     return view('welcome');
 });
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -43,5 +43,6 @@ Route::resource('sousCategories', SousCategorieController::class);
 Route::resource('categories', CategorieController::class);
 Route::resource('unites', UniteController::class);
 Route::resource('especes', EspeceController::class);
+Route::resource('formulaires', FormulaireController::class);
 
 require __DIR__ . '/auth.php';

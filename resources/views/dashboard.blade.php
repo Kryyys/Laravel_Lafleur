@@ -24,7 +24,7 @@
 
                 </div>
 
-<br><br>
+                <br><br>
 
                 <div class="flex justify-center">
                     <a href="{{ route('articles.index') }}" class="hover:underline font-bold text-xl dark:text-gray-100">
@@ -35,26 +35,35 @@
                 <br>
 
                 <div class="flex justify-around">
+
                     <a href="{{ route('couleurs.index') }}" class="hover:underline text-l dark:text-gray-100">
                         {{ __('Color') }}
                     </a>
+
                     <a href="{{ route('evenements.index') }}" class="hover:underline text-l dark:text-gray-100">
                         {{ __('Events') }}
                     </a>
+
                     <a href="{{ route('sousCategories.index') }}" class="hover:underline text-l dark:text-gray-100">
                         {{ __('Sub-Categories') }}
                     </a>
+
                     <a href="{{ route('categories.index') }}" class="hover:underline text-l dark:text-gray-100">
                         {{ __('Categories') }}
                     </a>
+
                     <a href="{{ route('unites.index') }}" class="hover:underline text-l dark:text-gray-100">
                         {{ __('Units') }}
                     </a>
+
                     <a href="{{ route('especes.index') }}" class="hover:underline text-l dark:text-gray-100">
                         {{ __('Species') }}
                     </a>
+
                 </div>
-<br><br><br><br>
+
+                <br><br><br><br>
+                
             </div>
         </div>
     </div>
