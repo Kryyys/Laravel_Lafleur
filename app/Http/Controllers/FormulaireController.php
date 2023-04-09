@@ -38,7 +38,8 @@ class FormulaireController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $formulaires = Formulaire::findOrFail($id);
+        return view('formulaires.show', ['formulaires' => $formulaires]);
     }
 
     /**
@@ -52,9 +53,15 @@ class FormulaireController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $id)
     {
-        //
+
+        $formulaire = $request->input('traite');
+        $formulaires = Formulaire::find($id);
+        $formulaires->traite = $formulaire ? 1 : 0;
+        $formulaires->save();
+        return redirect()->route('formulaires.index')->with("success", "La demande a été traitée");
+
     }
 
     /**
