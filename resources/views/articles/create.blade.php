@@ -26,10 +26,10 @@
 
                                 <br><br>
 
-                                <label for="sous_categorie_id">{{__("Sub-category of the item")}}</label>
+                                <label for="sous_categorie_id">{{__("Sub-category of the item")}} :</label>
                                 <br><br>
                                 <select name="sous_categorie_id" id="sous_categorie_id" class="text-gray-900">
-                                <option value="">-- Sélectionnez une sous-catégorie --</option>
+                                    <option value="">-- Sélectionnez une sous-catégorie --</option>
                                     @foreach($sousCategorie as $sousCategorieArticle)
                                     <option value="{{ $sousCategorieArticle->id }}" {{ $article->sous_categorie_id == $sousCategorieArticle->id ? 'selected' : '' }}>{{ $sousCategorieArticle->nom_sous_categorie }}
                                     </option>
@@ -41,16 +41,16 @@
 
                                 <br><br>
 
-                                <label for="nom_evenement">{{ __("Events of the item") }} :</label>
+                                <label for="">{{ __("Events of the item") }} :</label>
                                 <br><br>
-                                @foreach ($evenement as $evenementCheck)
+                                @foreach ($evenements as $evenementCheck)
                                 <div>
-                                    <input type="checkbox" name="evenement[]" value="{{ $evenementCheck->id }}" {{ in_array($evenementCheck->id, $articleEvenements) ? 'checked' : '' }}>
+                                    <input type="checkbox" name="evenements[]" value="{{ $evenementCheck->id }}" {{ in_array($evenementCheck->id, old('evenements', [])) ? 'checked' : '' }}>
                                     <label for="{{ $evenementCheck->id }}">{{ $evenementCheck->nom_evenement }}</label>
                                 </div>
                                 @endforeach
-                                @error('nom_evenement')
-                                <div class="text-red-500">{{$message}}</div>
+                                @error('evenements')
+                                <div class="text-red-500">{{ $message }}</div>
                                 @enderror
 
                                 <br>
@@ -96,7 +96,7 @@
 
                             <div class="ml-10">
 
-                                <label for="prix_promotion"> {{__("New price for the sale item")}} :</label>
+                                <label for="prix_promotion"> {{__("New price for the sale item")}} ({{__("Optional")}}) :</label>
                                 <br><br>
                                 <input type="text" name="prix_promotion" value="{{$article->prix_promotion}}" class="text-gray-900">
                                 @error('prix_promotion')
@@ -105,7 +105,7 @@
 
                                 <br><br>
 
-                                <label for="date_inventaire"> {{__("Inventory date")}} :</label>
+                                <label for="date_inventaire"> {{__("Inventory date")}} ({{__("Optional")}}) :</label>
                                 <br><br>
                                 <input type="text" name="date_inventaire" value="{{$article->date_inventaire}}" class="text-gray-900">
                                 @error('date_inventaire')
@@ -114,7 +114,7 @@
 
                                 <br><br>
 
-                                <label for="poids"> {{__("Weight")}} :</label>
+                                <label for="poids"> {{__("Weight")}} ({{__("Optional")}}) :</label>
                                 <br><br>
                                 <input type="text" name="poids" value="{{$article->poids}}" class="text-gray-900">
                                 @error('poids')
@@ -123,7 +123,7 @@
 
                                 <br><br>
 
-                                <label for="taille"> {{__("Height")}} :</label>
+                                <label for="taille"> {{__("Height")}} ({{__("Optional")}}) :</label>
                                 <br><br>
                                 <input type="text" name="taille" value="{{$article->taille}}" class="text-gray-900">
                                 @error('taille')
@@ -135,7 +135,7 @@
                                 <label for="couleur_id">{{__("Color of the item")}} :</label>
                                 <br><br>
                                 <select name="couleur_id" id="couleur_id" class="text-gray-900">
-                                <option value="">-- Sélectionnez une couleur --</option>
+                                    <option value="">-- Sélectionnez une couleur --</option>
                                     @foreach($couleur as $couleurId)
                                     <option value="{{ $couleurId->id }}" {{ $couleurId->couleur_id == $couleurId->id ? 'selected' : '' }}>{{ $couleurId->couleur }}
                                     </option>
@@ -150,7 +150,7 @@
                                 <label for="unite_id">{{__("Unity of the item")}} :</label>
                                 <br><br>
                                 <select name="unite_id" id="unite_id" class="text-gray-900">
-                                <option value="">-- Sélectionnez une unité --</option>
+                                    <option value="">-- Sélectionnez une unité --</option>
                                     @foreach($unite as $uniteId)
                                     <option value="{{ $uniteId->id }}" {{ $uniteId->unite_id == $uniteId->id ? 'selected' : '' }}>{{ $uniteId->unite }}
                                     </option>
@@ -165,7 +165,7 @@
                                 <label for="espece_id">{{__("Species of the item")}} :</label>
                                 <br><br>
                                 <select name="espece_id" id="espece_id" class="text-gray-900">
-                                <option value="">-- Sélectionnez une espèce --</option>
+                                    <option value="">-- Sélectionnez une espèce --</option>
                                     @foreach($espece as $especeId)
                                     <option value="{{ $especeId->id }}" {{ $especeId->espece_id == $especeId->id ? 'selected' : '' }}>{{ $especeId->espece }}
                                     </option>
@@ -180,8 +180,8 @@
                             </div>
                         </div>
                         <br>
-                        <div class="flex">
-                        <x-create :action="route('articles.store')" />
+                        <div class="flex items-center content-center justify-center">
+                            <x-create :action="route('articles.store')" />
                             <button class="retour w-18 m-10 cursor-pointer">
                                 <a href="{{route('articles.index')}}" class="retour">
                                     {{__("Back")}}
@@ -196,4 +196,3 @@
         </div>
     </div>
 </x-app-layout>
-

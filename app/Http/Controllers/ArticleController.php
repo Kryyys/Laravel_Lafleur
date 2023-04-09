@@ -33,16 +33,14 @@ class ArticleController extends Controller
         $especes = Espece::all();
         $unites = Unite::all();
         $evenements = Evenement::all();
-        $articleEvenements = $articles->evenement->pluck('id')->toArray();
         return view('articles.create', [
             'article' => $articles,
             'categorie' => $categories,
             'sousCategorie' => $sousCategories,
-            'evenement' => $evenements,
+            'evenements' => $evenements,
             'couleur' => $couleurs,
             'espece' => $especes,
             'unite' => $unites,
-            'articleEvenements' => $articleEvenements,
         ]);
     }
 
@@ -58,7 +56,6 @@ class ArticleController extends Controller
             'quantite_dispo' => ['required', 'regex:/^(?:[1-9]\d{0,2}|1000)$/'],
             'promotion' => ['required'],
             'evenements' => ['array'],
-            'evenements.*' => ['exists:lf_evenements,id'],
             'prix_promotion' => ["nullable"],
             'date_inventaire' => ["nullable"],
             'poids' => ["nullable"],
@@ -86,7 +83,6 @@ class ArticleController extends Controller
             'couleur_id.required' => 'Le champ Couleur est requis',
             'unite_id.required' => 'Le champ Unité est requis',
             'espece_id.required' => 'Le champ Espèce est requis',
-            'evenement_id.required' => 'Le champ Evènement est requis',
             'sous_categorie_id.required' => 'Le champ Sous-Catégorie est requis'
 
 
@@ -104,7 +100,9 @@ class ArticleController extends Controller
             $uniteId = $request->input('unite_id');
             $especeId = $request->input('espece_id');
             $sousCategorieId = $request->input('sous_categorie_id');
-            
+
+
+
             $articles = new Article();
 
             $articles->nom = $article;
@@ -120,9 +118,15 @@ class ArticleController extends Controller
             $articles->espece_id = $especeId;
             $articles->unite_id = $uniteId;
             $articles->sous_categorie_id = $sousCategorieId;
+
             $articles->save();
 
-            $article->evenement()->sync($request->input('evenement'));
+            if ($request->has('evenements')) {
+                $evenements = $request->input('evenements');
+                $article->evenement()->attach($evenements);
+            }
+
+
 
             return redirect()->route('articles.index')->with("success", "L'article a été créé avec succès !");
         } else {
@@ -260,4 +264,5 @@ class ArticleController extends Controller
 
         return redirect()->route('articles.index')->with('success', "L'article a été supprimé avec succès !");
     }
+
 }

@@ -1,4 +1,7 @@
 {
+    "Manage your Items": "Gérer vos articles",
+    "Nice to see you again": "Content de vous revoir",
+    "Optional": "Optionnel",
     "Events of the item" : "Evènements de l'article",
     "New Events of the item" : "Nouveaux évènements de l'article",
     "Create an Item": "Créer un article",
@@ -10,7 +13,7 @@
     "Weight": "Poids",
     "Inventory date": "Date du dernier inventaire",
     "New price for the sale item": "Nouveau prix de l'article en promotion",
-    "Sale item ?": "Article soldé ?",
+    "Sale item ?": "Article en promotion ?",
     "New quantity of the item": "Nouvelle quantité de l'article",
     "New picture of the item": "Nouvelle image de l'article",
     "New price of the item": "Nouveau prix de l'article",
