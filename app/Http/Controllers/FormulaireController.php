@@ -9,6 +9,7 @@ class FormulaireController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * @return vue formulaire index
      */
     public function index()
     {
