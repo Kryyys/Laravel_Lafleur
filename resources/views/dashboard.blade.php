@@ -24,7 +24,31 @@
 
                 </div>
 
-                <br><br>
+                @php
+                    $articlesRupture = false;
+                    @endphp
+
+                    @foreach ($articles as $article)
+                    @if ($article->quantite_dispo <= 10) @php $articlesRupture=true; @endphp @endif @endforeach @if ($articles->count() > 0)
+                        <div class="flex flex-col justify-center items-center content-center mt-10">
+                            @if ($articlesRupture)
+                            <span class="text-center font-bold text-red-500">ATTENTION : ces articles sont sur le point d'être en rupture !</span>
+                            @endif
+                            <table class="border border-red-500 mt-6 w-96">
+                                <tbody>
+                                    @foreach ($articles as $article)
+                                    @if ($article->quantite_dispo <= 10) @php $articlesRupture=true; @endphp <tr>
+                                        <td class="text-red-500 p-2"><a href="{{ route('articles.show', ['article' => $article->id]) }}" class="hover:underline">{{ $article->nom }}</a></td>
+                                        <td class="text-red-500 p-2">{{ $article->quantite_dispo }} restants</td>
+                                        </tr>
+                                        @endif
+                                        @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        @endif
+
+<br>
 
                 <div class="flex justify-center">
                     <a href="{{ route('articles.index') }}" class="hover:underline font-bold text-xl dark:text-gray-100">
@@ -62,8 +86,19 @@
 
                 </div>
 
-                <br><br><br><br>
-                
+<br><br>
+
+<div class="flex justify-center">
+                    <a href="{{ route('formulaires.index') }}" class="hover:underline font-bold text-xl dark:text-gray-100">
+                        {{ __('Manage your demands') }}
+                        </h2>
+
+                        <br><br>
+
+                </div>
+
+
+
             </div>
         </div>
     </div>

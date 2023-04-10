@@ -27,8 +27,22 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    $articles = App\Models\Article::all();
+    $articlesRupture = false;
+
+    foreach ($articles as $article) {
+        if ($article->quantite_dispo <= 10) {
+            $articlesRupture = true;
+            break;
+        }
+    }
+
+    return view('dashboard', [
+        'articles' => $articles,
+        'articlesRupture' => $articlesRupture,
+    ]);
+})->middleware(['auth'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

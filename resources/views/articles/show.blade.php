@@ -72,6 +72,11 @@
                                 <x-delete :action="route('articles.destroy', $articles->id)">
                                     <i class="fa-solid fa-trash text-3xl text-white transition duration-100 ease-in-out bg-transparent hover:scale-150"></i>
                                 </x-delete>
+                                <button class="retour w-18 m-10 cursor-pointer">
+                                <a href="{{route('articles.index')}}" class="retour">
+                                    {{__("Back")}}
+                                </a>
+                            </button>
                             </div>
                         </div>
 
